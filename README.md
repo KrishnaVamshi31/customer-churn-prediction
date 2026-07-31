@@ -1,71 +1,308 @@
-# ChurnGuard — Customer Churn Prediction
+# 📉 Customer Churn Prediction
 
-An end-to-end machine-learning project that predicts which subscription customers may leave, allowing a business to offer timely retention support.
+> An end-to-end Machine Learning application that predicts customer churn using Scikit-learn Pipelines, Random Forest, Logistic Regression, and an interactive Streamlit dashboard.
 
-## Why this project matters
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?style=for-the-badge&logo=scikitlearn)
+![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-red?style=for-the-badge&logo=streamlit)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Keeping a customer is typically less expensive than acquiring a new one. This classifier helps a subscription business prioritise customers for proactive outreach. It is a **decision-support tool**, not an automatic decision maker.
+---
 
-## What is included
+## 📌 Overview
 
-- Reproducible telecom-style demo data generation
-- scikit-learn preprocessing pipeline: imputation, scaling, and categorical encoding
-- Logistic Regression vs Random Forest comparison
-- Evaluation using accuracy, precision, recall, and ROC-AUC
-- Feature-importance visualisation
-- Streamlit dashboard for live predictions and insights
-- Basic automated tests
+Customer churn is one of the most critical business problems in subscription-based industries. Identifying customers who are likely to leave enables companies to take proactive retention measures.
 
-## Structure
+This project implements a complete Machine Learning workflow—from data generation and preprocessing to model training, evaluation, persistence, and deployment through a Streamlit web application.
+
+---
+
+## ✨ Features
+
+- End-to-end Machine Learning pipeline
+- Synthetic customer dataset generation
+- Data preprocessing using Scikit-learn Pipelines
+- Missing value imputation
+- Feature scaling
+- One-Hot Encoding for categorical variables
+- Logistic Regression baseline model
+- Random Forest classifier
+- Automated model comparison
+- Model persistence using Joblib
+- Interactive Streamlit dashboard
+- Performance visualization
+- Real-time churn prediction
+
+---
+
+# 🏗 Project Architecture
 
 ```
+
+Customer Dataset
+│
+▼
+Data Preprocessing
+│
+├── Missing Value Handling
+├── Feature Scaling
+└── One-Hot Encoding
+│
+▼
+Train / Test Split
+│
+▼
+Model Training
+├── Logistic Regression
+└── Random Forest
+│
+▼
+Model Evaluation
+│
+▼
+Best Model Selection
+│
+▼
+Model Serialization (.joblib)
+│
+▼
+Streamlit Dashboard
+│
+▼
+Customer Churn Prediction
+
+```
+
+---
+
+# 📂 Project Structure
+
+```
+
 Customer-Churn-Prediction/
-├── app.py                 # Streamlit user interface
+│
+├── app.py
+├── README.md
+├── requirements.txt
+│
+├── data/
+│   └── customer_churn.csv
+│
+├── models/
+│   ├── churn_model.joblib
+│   └── metrics.json
+│
 ├── src/
-│   ├── data_generation.py # Creates reproducible demo data
-│   └── train.py           # Trains, evaluates, and saves the model
-├── tests/                 # Automated checks
-├── data/                  # Generated during the first training run
-└── models/                # Saved model and performance summary
+│   ├── data_generation.py
+│   └── train.py
+│
+└── tests/
+
 ```
 
-## Run locally
+---
 
-```powershell
-cd $HOME\Documents\Customer-Churn-Prediction
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+# 🛠 Tech Stack
+
+| Category | Technologies |
+|-----------|--------------|
+| Programming | Python |
+| Data Processing | Pandas, NumPy |
+| Machine Learning | Scikit-learn |
+| Model Persistence | Joblib |
+| Visualization | Plotly |
+| Frontend | Streamlit |
+| Testing | PyTest |
+
+---
+
+# 📊 Dataset
+
+The project uses a **synthetically generated customer churn dataset** consisting of approximately **2,500 customer records**.
+
+Each customer contains features such as:
+
+- Customer Tenure
+- Monthly Charges
+- Total Charges
+- Contract Type
+- Internet Service
+- Payment Method
+- Online Security
+- Tech Support
+- Senior Citizen Status
+- Churn (Target Variable)
+
+The dataset is generated using business-inspired rules to simulate realistic customer behavior.
+
+---
+
+# ⚙ Machine Learning Pipeline
+
+### Numerical Features
+
+- Median Imputation
+- Standard Scaling
+
+### Categorical Features
+
+- Most Frequent Imputation
+- One-Hot Encoding
+
+Both pipelines are combined using Scikit-learn's **ColumnTransformer** to ensure consistent preprocessing during both training and inference.
+
+---
+
+# 🤖 Models Used
+
+## Logistic Regression
+
+- Baseline classification model
+- Balanced class weights
+- Max Iterations = 1000
+
+---
+
+## Random Forest
+
+- 350 Decision Trees
+- Balanced class weights
+- Minimum samples per leaf = 4
+
+The best-performing model is automatically selected and saved for deployment.
+
+---
+
+# 📈 Model Performance
+
+| Metric | Logistic Regression | Random Forest |
+|---------|--------------------:|--------------:|
+| Accuracy | 66.2% | 66.6% |
+| Precision | 53.6% | 54.2% |
+| Recall | 68.3% | 65.6% |
+| ROC-AUC | 71.6% | 71.1% |
+
+Model selection prioritizes **Recall** to better identify customers at risk of churning.
+
+---
+
+# 💻 Streamlit Dashboard
+
+The web application allows users to:
+
+- Enter customer information
+- Predict churn likelihood
+- View model metrics
+- Explore performance visualizations
+
+---
+
+# 🚀 Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/KrishnaVamshi31/customer-churn-prediction.git
+```
+
+Navigate into the project
+
+```bash
+cd customer-churn-prediction
+```
+
+Install dependencies
+
+```bash
 pip install -r requirements.txt
-python src\train.py
+```
+
+Launch the Streamlit application
+
+```bash
 streamlit run app.py
 ```
 
-## ML workflow, explained simply
+---
 
-1. **Generate/load data.** The supplied dataset is synthetic, so the project runs immediately and reproducibly. For a real deployment, replace it with approved real customer data.
-2. **Split the data.** 80% trains the models and 20% remains unseen until evaluation.
-3. **Prepare data inside a pipeline.** Numeric values are imputed and scaled; text categories are encoded. This avoids data leakage from the test set.
-4. **Compare models.** Logistic Regression is a simple, explainable baseline. Random Forest captures more complex relationships.
-5. **Select a model.** The project prioritises recall, then ROC-AUC, because missing a likely churner loses a retention opportunity.
-6. **Deploy.** The selected model is saved with `joblib`; the Streamlit app loads it for live predictions.
+# 📷 Screenshots
 
-## Metrics
+## Dashboard
 
-| Metric | What it tells you |
-|---|---|
-| Accuracy | How often the model was correct overall. |
-| Precision | Of customers flagged as churners, how many really churned? |
-| Recall | Of customers who churned, how many did we catch? |
-| ROC-AUC | How well the model ranks churn risk across thresholds. |
+```
+Add dashboard screenshot here
+```
 
-## Interview talking points
+---
 
-- "I kept preprocessing in a scikit-learn Pipeline, so transformations are learned from the training data only."
-- "I used Logistic Regression as a baseline and Random Forest for non-linear patterns, then compared them fairly on the same test set."
-- "I prioritised recall because missed churners are missed retention opportunities."
-- "Feature importance supports investigation, but it does not prove causation."
-- "Before real deployment, I would validate on a representative dataset and monitor performance drift."
+## Prediction Result
 
-## Resume bullet
+```
+Add prediction screenshot here
+```
 
-> Built ChurnGuard, an end-to-end customer churn prediction application using Python, scikit-learn, and Streamlit; compared classification models, evaluated recall and ROC-AUC, and delivered live risk predictions with retention recommendations.
+---
+
+## Performance Metrics
+
+```
+Add metrics screenshot here
+```
+
+---
+
+# 🔮 Future Improvements
+
+- Train on a real-world telecom churn dataset
+- Hyperparameter tuning using GridSearchCV
+- SHAP-based model explainability
+- Cross-validation
+- Model deployment on Streamlit Community Cloud
+- Docker containerization
+- CI/CD pipeline using GitHub Actions
+- REST API using FastAPI
+
+---
+
+# 🎯 Learning Outcomes
+
+This project demonstrates practical experience in:
+
+- Machine Learning
+- Binary Classification
+- Data Preprocessing
+- Feature Engineering
+- Model Evaluation
+- Scikit-learn Pipelines
+- Streamlit Development
+- Model Serialization
+- Software Engineering Best Practices
+
+---
+
+# 🏷 Repository Topics
+
+```
+machine-learning
+customer-churn
+classification
+python
+scikit-learn
+streamlit
+predictive-analytics
+data-science
+```
+
+---
+
+# 👨‍💻 Author
+
+**Krishna Vamshi**
+
+GitHub: https://github.com/KrishnaVamshi31
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
