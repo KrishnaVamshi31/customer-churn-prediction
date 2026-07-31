@@ -1,0 +1,67 @@
+{
+  "selected_model": "Logistic Regression",
+  "metrics": {
+    "Logistic Regression": {
+      "accuracy": 0.662,
+      "precision": 0.536,
+      "recall": 0.683,
+      "roc_auc": 0.716
+    },
+    "Random Forest": {
+      "accuracy": 0.666,
+      "precision": 0.542,
+      "recall": 0.656,
+      "roc_auc": 0.711
+    }
+  },
+  "feature_importance": [
+    {
+      "feature": "categorical__contract_Month-to-month",
+      "importance": 0.5101011187928974
+    },
+    {
+      "feature": "categorical__internet_service_Fiber optic",
+      "importance": 0.4997798317431324
+    },
+    {
+      "feature": "numeric__monthly_charges",
+      "importance": 0.48753162681853923
+    },
+    {
+      "feature": "numeric__tenure_months",
+      "importance": 0.4377282273365526
+    },
+    {
+      "feature": "categorical__contract_Two year",
+      "importance": 0.41466203112033373
+    },
+    {
+      "feature": "categorical__internet_service_No",
+      "importance": 0.40393989571039324
+    },
+    {
+      "feature": "categorical__payment_method_Electronic check",
+      "importance": 0.3752999587305986
+    },
+    {
+      "feature": "categorical__tech_support_Yes",
+      "importance": 0.2854797361050307
+    },
+    {
+      "feature": "categorical__online_security_Yes",
+      "importance": 0.2654785921145133
+    },
+    {
+      "feature": "categorical__senior_citizen_No",
+      "importance": 0.24712094309551463
+    },
+    {
+      "feature": "categorical__payment_method_Mailed check",
+      "importance": 0.2413915675792318
+    },
+    {
+      "feature": "categorical__internet_service_DSL",
+      "importance": 0.23875626790071233
+    }
+  ]
+}
