@@ -225,31 +225,6 @@ streamlit run app.py
 
 ---
 
-# 📷 Screenshots
-
-## Dashboard
-
-```
-Add dashboard screenshot here
-```
-
----
-
-## Prediction Result
-
-```
-Add prediction screenshot here
-```
-
----
-
-## Performance Metrics
-
-```
-Add metrics screenshot here
-```
-
----
 
 # 🔮 Future Improvements
 
